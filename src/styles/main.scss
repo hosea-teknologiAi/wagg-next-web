@@ -1,0 +1,606 @@
+html,body{overflow-x:hidden !important}
+
+// imports styles
+@import './partials/variables.scss';
+@import './partials/breakpoints.scss';
+// @import './partials/reset.css';
+
+// google fonts
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap');
+
+/*Palamecia*/
+@font-face {
+  font-family: 'Palamecia Titling';
+  src: url("/assets/fonts/palamecia/PalameciaTitling.ttf");
+}
+
+/*Futura 700*/
+@font-face {
+  font-family: 'Futura-Bold';
+  src: url("/assets/fonts/futura/FuturaExtraBlack.ttf");
+}
+
+/*Futura 600*/
+@font-face {
+  font-family: 'Futura-SemiBold';
+  src: url("/assets/fonts/futura/FuturaBold.ttf");
+}
+
+/*Futura 500*/
+@font-face {
+  font-family: 'Futura-Medium';
+  src: url("/assets/fonts/futura/FuturaMediumBt.ttf");
+}
+
+/*Futura 500*/
+@font-face {
+  font-family: 'Futura-Medium-Italic';
+  src: url("/assets/fonts/futura/FuturaMediumItalic.ttf");
+}
+
+/*Futura 400*/
+@font-face {
+  font-family: 'Futura-Regular';
+  src: url("/assets/fonts/futura/FuturaBook.ttf");
+}
+
+@mixin placeholder {
+  &::-webkit-input-placeholder {
+      @content;
+  }
+
+  &:-moz-placeholder { /* Firefox 18- */
+      @content;
+  }
+
+  &::-moz-placeholder {  /* Firefox 19+ */
+      @content;
+  }
+
+  &:-ms-input-placeholder {
+      @content;
+  }
+}
+
+@-webkit-keyframes watchAnimation {
+  from { -webkit-transform: rotate(0deg) translateX(10px) rotate(0deg); }
+  to   { -webkit-transform: rotate(360deg) translateX(10px) rotate(-360deg); }
+}
+
+@-moz-keyframes watchAnimation {
+  from { -moz-transform: rotate(0deg) translateX(10px) rotate(0deg); }
+  to   { -moz-transform: rotate(360deg) translateX(10px) rotate(-360deg); }
+}
+
+@-o-keyframes watchAnimation {
+  from { -o-transform: rotate(0deg) translateX(10px) rotate(0deg); }
+  to   { -o-transform: rotate(360deg) translateX(10px) rotate(-360deg); }
+}
+
+@keyframes watchAnimation {
+  from { transform: rotate(0deg) translateX(10px) rotate(0deg); }
+  to   { transform: rotate(360deg) translateX(10px) rotate(-360deg); }
+}
+
+@-webkit-keyframes opacity {
+  0%   { opacity: 0.2; }
+  50%   { opacity: 1; }
+  100% { opacity: 0.2; }
+}
+@-moz-keyframes opacity {
+  0%   { opacity: 0.2; }
+  50%   { opacity: 1; }
+  100% { opacity: 0.2; }
+}
+@-o-keyframes opacity {
+  0%   { opacity: 0.2; }
+  50%   { opacity: 1; }
+  100% { opacity: 0.2; }
+}
+@keyframes opacity {
+  0%   { opacity: 0.2; }
+  50%   { opacity: 1; }
+  100% { opacity: 0.2; }
+}
+
+*, *:after, *:before {
+  box-sizing: border-box;
+}
+
+body {
+  background-image: url("/assets/images/wagginton_bg_animals.png");
+  background-size: cover;
+  box-sizing: border-box;
+  background-color: white;
+  font-family: var(--main-font);
+  color: var(--color-text);
+  font-size: 16px;
+  &.body--with-footer {
+    .main {
+      align-items: normal;
+    }
+  }
+}
+
+span {
+  font-weight: 300;
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+    /* display: none; <- Crashes Chrome on hover */
+    -webkit-appearance: none;
+    margin: 0; /* <-- Apparently some margin are still there even though it's hidden */
+}
+
+button {
+  cursor: pointer;
+}
+
+input[type=number] {
+    -moz-appearance:textfield; /* Firefox */
+}
+
+input, textarea, button, select {
+  border: none;
+  background: none;
+  outline: none;
+  border-radius: 0;
+  -webkit-appearance:none;
+  -moz-appearance:none;
+  appearance:none;
+  font-family: var(--main-font);
+}
+
+button {
+  cursor: pointer;
+}
+
+h1,h2,h3,h4,h5 {
+  color: var(--color-black);
+}
+
+.container {
+  max-width: 380px;
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 16px;
+  padding-right: 16px;
+  @include breakpoint(phone) {
+    max-width: 650px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  @include breakpoint(tablet-lg) {
+    max-width: 980px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  @include breakpoint(desktop-lg) {
+    max-width: 1280px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+}
+
+.site-header {
+  position: fixed;
+  width: 100%;
+  top: 0;
+  left: 0;
+  z-index: 999;
+  height: 65px;
+  color: #000;
+  box-shadow: none;
+  transition: all .3s ease;
+  border-bottom: 1px solid #E5E5E5;
+  @include breakpoint(phone) {
+    height: 100px;
+  }
+  .btn-hamburger {
+    &:before, &:after, span {
+      background-color: #000;
+    }
+  }
+  .container {
+    display: flex;
+    height: 100%;
+    align-items: center;
+  }
+  .site-logo {
+    color: #000;
+  }
+  .site-header__btn-avatar {
+    display: none;
+    .icon-avatar {
+      color: var(--color-orange);
+      font-size: 32px;
+      border: 2px solid var(--color-orange);
+      border-radius: 50%;
+      padding: 2px;
+    }
+    @include breakpoint(tablet-lg) {
+      display: block;
+    }
+  }
+  .site-header__btn-menu {
+    @include breakpoint(tablet-lg) {
+      display: none;
+    }
+  }
+  .site-header__actions {
+    margin-left: auto;
+    display: flex;
+    align-items: center;
+    @include breakpoint(tablet-lg) {
+      margin-left: 0;
+    }
+    button {
+      margin-left: 15px;
+      @include breakpoint(tablet-lg) {
+        margin-left: 25px;
+      }
+    }
+    i {
+      color: #000;
+      z-index: 10;
+      transition: all .3s ease;
+      position: relative;
+      font-size: 18px;
+    }
+  }
+  .site-nav {
+    top: 0;
+    right: -250px;
+    width: 250px;
+    z-index: 9999;
+    height: 100vh;
+    margin-left: auto;
+    margin-right: auto;
+    position: fixed;
+    background-color: #FFF;
+    transition: all .3s ease;
+    border-left: 1px solid #E5E5E5;
+    @include breakpoint(tablet-lg) {
+      position: relative;
+      height: auto;
+      right: 0;
+      width: auto;
+      border: none;
+      background-color: transparent;
+    }
+    .site-nav__btn {
+      padding: 13px 18px;
+      width: 100%;
+      font-size: 15px;
+      font-weight: 500;
+      text-align: left;
+      @include breakpoint(tablet-lg) {
+        display: none;
+      }
+    }
+    &.site-nav--open {
+      right: 0;
+    }
+    a {
+      font-size: 15px;
+      font-weight: 500;
+      width: 100%;
+      color: #000;
+      display: block;
+      text-align: left;
+      padding: 15px 18px;
+      @include breakpoint(tablet-lg) {
+        width: auto;
+        padding: 0;
+        color: #000;
+        margin-right: 76px;
+        display: inline-block;
+        font-size: 14px;
+      }
+    }
+  }
+  &.site-header--fixed {
+    border-bottom: 1px solid #E5E5E5;
+    background-color: #FFF;
+    .btn-hamburger {
+      &:before, &:after, span {
+        background-color: #000;
+      }
+    }
+    a, i {
+      color: #000;
+    }
+    button {
+      color: #000;
+      i {
+        color: #000;
+      }
+    }
+    .site-logo {
+      color: #000;
+    }
+  }
+  .search-form-wrapper {
+    input {
+      @include breakpoint(tablet-lg) {
+        border: 1px solid #ABABAB;
+        border-radius: 2rem;
+        padding: .5rem 1rem;
+      }
+    }
+    &.search-form--active {
+      .search-form {
+        top: 0;
+        @include breakpoint(tablet-lg) {
+          top: auto;
+        }
+      }
+    }
+  }
+}
+
+.app-main {
+  .hidden {
+    display: none;
+  }
+}
+
+.main-page {
+  padding-top: 65px;
+  @include breakpoint(phone) {
+    padding-top: 100px;
+  }
+}
+
+
+
+.section {
+  margin-bottom: 70px;
+  @include breakpoint(phone) {
+    margin-bottom: 150px;
+  }
+  .section__intro {
+    margin-bottom: 36px;
+    @include breakpoint(phone) {
+      margin-bottom: 93px;
+    }
+    h4 {
+      font-size: 23px;
+      font-weight: 300;
+      text-align: center;
+      @include breakpoint(phone) {
+        font-size: 29px;
+      }
+    }
+  }
+}
+
+.shop-data-items {
+  @include breakpoint(phone) {
+    display: flex;
+    justify-content: space-between;
+  }
+  li {
+    list-style-type: none;
+    text-align: center;
+    margin-bottom: 50px;
+    @include breakpoint(phone) {
+      width: 22%;
+      margin-bottom: 0;
+      text-align: left;
+    }
+    .icon-shipping {
+      height: 70px;
+      width: 70px;
+      font-size: 20px;
+      flex-shrink: 0;
+      display: flex;
+      color: #000;
+      // background: #F6F6F6;
+      border-radius: 10px;
+      transition: all .3s ease;
+      justify-content: center;
+      align-items: center;
+      margin-bottom: 28px;
+      margin-left: auto;
+      margin-right: auto;
+      @include breakpoint(phone) {
+        margin-bottom: 43px;
+        margin-left: 0;
+        margin-right: 0;
+      }
+    }
+    .data-item__content {
+      h4 {
+        margin-bottom: 20px;
+      }
+      p {
+        font-size: 13px;
+        line-height: 150%;
+      }
+    }
+    &:hover {
+      .icon-shipping {
+        color: var(--color-orange);
+        background: var(--color-orange-light);
+      }
+    }
+  }
+}
+
+.section-products-featured {
+  .section-products-featured__header {
+    display: flex;
+    align-items: center;
+    margin-bottom: 35px;
+    justify-content: space-between;
+    @include breakpoint(phone) {
+      margin-bottom: 65px;
+    }
+    h3 {
+      font-weight: 300;
+      font-size: 18px;
+      @include breakpoint(phone) {
+        font-size: 29px;
+      }
+    }
+  }
+  .products-carousel {
+    .swiper-container {
+      overflow: visible;
+    }
+  }
+}
+
+.product-item {
+  &.product-item--loading {
+    .product__image, .product__description h3, .product__price h4 {
+      &:before {
+        content: '';
+        background-color: #eee;
+        background-image: linear-gradient(
+          90deg,
+          #eee,
+          #f5f5f5,
+          #eee
+        );
+        animation-name: skeleton;
+        animation-duration: 1.2s;
+        animation-timing-function: ease-in-out;
+        animation-iteration-count: infinite;
+        background-size: 200px 100%;
+        background-repeat: no-repeat;
+        border-radius: 4px;
+        display: inline-block;
+        line-height: 1;
+        width: 100%;
+      }
+    }
+    .product__image {
+      position: relative;
+      &:before {
+        top: 0;
+        left: 0;
+        position: absolute;
+        width: 100%;
+        height: 100%;
+      }
+    }
+    .product__description {
+      h3 {
+        &:before {
+          height: 20px;
+          width: 80%;
+        }
+      }
+    }
+    .product__price {
+      h4 {
+        width: 40%;
+        &:before {
+          height: 18px;
+          width: 100%;
+        }
+      }
+    }
+  }
+  .product__image {
+    height: 250px;
+    background-color: #FAFAFA;
+    margin-bottom: 20px;
+    position: relative;
+    @include breakpoint(phone) {
+      height: 385px;
+      margin-bottom: 30px;
+    }
+    > a {
+      height: 100%;
+      width: 100%;
+      display: block;
+      padding: 18px;
+      @include breakpoint(phone) {
+        padding: 24px;
+      }
+    }
+    .btn-heart {
+      border-radius: 50%;
+      top: 10px;
+      right: 12px;
+      z-index: 10;
+      width: 32px;
+      font-size: 12px;
+      border: none;
+      height: 32px;
+      background-color: var(--color-orange);
+      color: #FFF;
+      position: absolute;
+      box-shadow: 0px 0px 3px 0px rgba(0,0,0,0.16);
+      @include breakpoint(phone) {
+        height: 38px;
+        width: 38px;
+        top: 19px;
+        right: 19px;
+        font-size: 14px;
+      }
+      &:hover, &.btn-heart--active {
+        color: red;
+        background-color: var(--color-orange);
+      }
+    }
+    img {
+      top: 0;
+      left: 0;
+      z-index: 5;
+      width: 100%;
+      height: 100%;
+      object-position: top center;
+      object-fit: cover;
+      position: absolute;
+    }
+    .product__discount {
+      color: #FFF;
+      padding: 5px 9px;
+      border-radius: 40px;
+      font-weight: 500;
+      font-size: 12px;
+      z-index: 10;
+      position: relative;
+      background-color: var(--color-red);
+    }
+  }
+  .product__description {
+    h3 {
+      margin-bottom: 9px;
+      font-weight: 300;
+      font-size: 13px;
+      @include breakpoint(phone) {
+        font-size: 16px;
+      }
+    }
+    .product__price {
+      display: flex;
+      h4 {
+        font-weight: 400;
+        font-size: 15px;
+        @include breakpoint(phone) {
+          font-size: 20px;
+        }
+      }
+      span {
+        color: #CECECE;
+        margin-left: 20px;
+        font-size: 15px;
+        @include breakpoint(phone) {
+          font-size: 20px;
+          margin-left: 29px;
+        }
+      }
+      &.product__price--discount {
+        h4 {
+          color: #FF0000;
+        }
+      }
+    }
+  }
+}
